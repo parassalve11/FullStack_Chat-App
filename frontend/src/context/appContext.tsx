@@ -6,7 +6,7 @@ import Cookies from "js-cookie";
 import toast, { Toaster } from "react-hot-toast";
 import axios from "axios";
 
-export const user_service = "http://3.109.157.137:5000/api/v1"
+export const user_service = "http://localhost:5000/api/v1"
 export const chat_service = "http://3.109.157.137:5002/api/v1";
 export const chat_service2 = "http://3.109.157.137:5002"
 

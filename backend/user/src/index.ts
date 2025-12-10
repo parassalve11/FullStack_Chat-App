@@ -5,6 +5,8 @@ import userRoutes from "./routes/user.route.js";
 import { connRabbitMQ } from "./lib/rabbitmq.js";
 import { connectDb } from "./lib/db.js";
 import cors from "cors";
+import cookieParser from "cookie-parser";
+
 dotenv.config();
 
 export const redisClient = createClient({
@@ -18,18 +20,20 @@ redisClient
 
 const app = express();
 
-// 🔥 CORS FIX (allow deployed backend & frontend IPs)
+// ✔ Correct CORS Setup
 app.use(
   cors({
-    origin: "*",
+    origin: [
+      "http://localhost:3000",
+      "http://3.109.157.137",
+      "http://3.109.157.137:3000"
+    ],
+    credentials: true,
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-    allowedHeaders: ["Content-Type", "Authorization"],
-    credentials: false, // must be false if origin is "*"
   })
 );
 
-// 🟢 Preflight fix
-app.use(cors());
+app.use(cookieParser());
 app.use(express.json());
 
 app.use("/api/v1/users", userRoutes);

@@ -48,6 +48,7 @@ export const verifyUser = TryCatch(async(req,res) =>{
 
     if(!email || !enteredOtp){
         console.log("Email and Otp is Requied.");
+        return
     };
 
     const otpKey = `otp:${email}`;

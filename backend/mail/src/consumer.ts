@@ -9,7 +9,7 @@ dotenv.config();
 export const sendOtpToConsumers = async() =>{
     try {
         const conn = await amqp.connect({
-             protocol:"amqp",
+        protocol:"amqp",
         hostname:process.env.RABBITMQ_HOST,
         port:5672,
         username:process.env.RABBITMQ_USERNAME,

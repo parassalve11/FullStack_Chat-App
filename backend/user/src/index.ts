@@ -18,7 +18,7 @@ redisClient.connect().then(() => console.log("Redis is connected")).catch(consol
 const app = express();
 
 app.use(cors({
-    origin:"http://localhost:3000",
+    origin:"http://13.233.255.160:3000",
     credentials:true
 }))
 app.use(express.json());

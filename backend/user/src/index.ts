@@ -5,6 +5,7 @@ import userRoutes from "./routes/user.route.js";
 import { connRabbitMQ } from "./lib/rabbitmq.js";
 import { connectDb } from "./lib/db.js";
 import cors from "cors";
+
 dotenv.config();
 
 export const redisClient = createClient({
@@ -18,17 +19,23 @@ redisClient
 
 const app = express();
 
+// 🔥 CORS FIX (allow deployed backend & frontend IPs)
 app.use(
   cors({
     origin: [
-      "http://13.233.255.160",
-      "http://13.233.255.160:3000",
+      "http://43.204.231.232",
+      "http://43.204.231.232:3000",
       "http://localhost:3000",
     ],
     credentials: true,
-    methods: ["GET", "POST", "PUT", "DELETE"],
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization"],
   })
 );
+
+// 🟢 Preflight fix
+app.options("*", cors());
+
 app.use(express.json());
 
 app.use("/api/v1/users", userRoutes);
@@ -36,7 +43,7 @@ app.use("/api/v1/users", userRoutes);
 const PORT = process.env.PORT || 5000;
 
 app.listen(PORT, () => {
-  console.log("The server is Running on ", PORT);
+  console.log("🚀 Server running on port", PORT);
   connectDb();
   connRabbitMQ();
 });

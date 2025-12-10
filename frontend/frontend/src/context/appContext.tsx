@@ -6,9 +6,9 @@ import Cookies from "js-cookie";
 import toast, { Toaster } from "react-hot-toast";
 import axios from "axios";
 
-export const user_service = "http://43.204.231.232:5000/api/v1"
-export const chat_service = "http://43.204.231.232:5003/api/v1";
-export const chat_service2 = "http://43.204.231.232:5003"
+export const user_service = "http://13.127.119.218:5000/api/v1"
+export const chat_service = "http://13.127.119.218:5002/api/v1";
+export const chat_service2 = "http://13.127.119.218:5002"
 
 export interface User {
   _id: string;

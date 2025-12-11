@@ -3,6 +3,6 @@ import axios from "axios";
 
 
 export const axiosIntance = axios.create({
-    baseURL:"http://localhost:5000/api/v1",
+    baseURL:`http://${process.env.NEXT_PUBLIC_USER_SERVICE}/api/v1`,
     withCredentials:true
 });
